@@ -10,14 +10,22 @@
 
 __version__ = 1.0
 
+NAME = "name"
+RECIPIE = "recipie"
+
 import pickle, shelve
 
 BAR_GUIDE = "bar_guide"
 
-def formatted_input(question):
+def formatted_input(part, question):
     """Gets a drink name, recipe or command and returns it properly formatted"""
     new_input = input(question)
-    new_input = new_input.title()
+    if part == NAME:
+        new_input = new_input.title()
+    elif part == RECIPIE:
+        new_input = new_input.capitalize()
+    else:
+        print("Non-fatal error: Someting went wrong, but we'll proceed anyway\n")
     return new_input
 
 # Main
@@ -33,17 +41,17 @@ drink_recipes = shelve.open(BAR_GUIDE, "c")
 action = None
 
 while action != "Done":
-    action = formatted_input("Enter <drink name>, 'list', 'add', 'delete', 'edit', or 'done': ")
+    action = formatted_input(NAME, "Enter <drink name>, 'list', 'add', 'delete', 'edit', or 'done': ")
     
     if action == "List":
         print("\n", list(drink_recipes.keys()), "\n")
 
     elif action == "Add":
-        drink_name = formatted_input("What drink do you want to add? ")
+        drink_name = formatted_input(NAME, "What drink do you want to add? ")
         if drink_name in drink_recipes:
             print("That drink is already in the recipe book.\n")
         else: 
-            drink_recipe = formatted_input("What is the new recipe? ")
+            drink_recipe = formatted_input(RECIPIE, "What is the new recipe? ")
             drink_recipes[drink_name] = drink_recipe
             print(drink_name, "recipe added to the recipe book\n")
             
@@ -56,9 +64,9 @@ while action != "Done":
             print(drink_name, "not found\n")
             
     elif action == "Edit":
-        drink_name = formatted_input("What drink do you want to edit in the recipe book? ")
+        drink_name = formatted_input(NAME, "What drink do you want to edit in the recipe book? ")
         if drink_name in drink_recipes:
-            new_recipe = formatted_input("What is your new recipe? ")
+            new_recipe = formatted_input(RECIPIE, "What is your new recipe? ")
             drink_recipes[drink_name] = new_recipe
             print(drink_name, "entry changed to ")
             print(drink_recipes.get(drink_name), "\n")
