@@ -23,7 +23,7 @@
 #      Edit a recipe
 #      Quit when you're done
 
-__version__ = 1.0
+__version__ = 2.0
 
 NAME = "name"
 RECIPIE = "recipie"
