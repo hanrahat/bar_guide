@@ -1,7 +1,5 @@
 # Bar Guide
 
-<<<<<<< HEAD
-=======
 # Copyright 2013 Tom Hanrahan
 # All Rights Reserved.
 #
@@ -17,7 +15,6 @@
 # License for the specific language governing permissions and limitations
 # under the License
 
->>>>>>> 0b02ac5d96336993e4c27920adf2aeecd4943d9f
 # Bar Guide let's you:
 #      Display the recipe for a drink
 #      List all of the drinks in the recipe book
